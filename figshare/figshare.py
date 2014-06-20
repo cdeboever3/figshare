@@ -21,7 +21,7 @@ class Figshare(object):
             'description': description,
             'defined_type': defined_type,
         }), headers={'content-type':'application/json'})
-        return response.content.json()
+        return response.content
 
     def make_private(self, article_id):
         response = self.client.post('%s/articles/%s/action/make_private' % (self.endpoint, article_id))
