@@ -31,6 +31,10 @@ class Figshare(object):
         response = self.client.put('%s/articles/%s' % (self.endpoint, article_id))
         return response.content.json()
 
+    def article_details(self, article_id):
+        response = self.client.get(self.endpoint + '/articles/{}'.format(article_id))
+        return json.loads(response.content)
+
     def upload_file(self, article_id, filepath_or_buffer):
         if isinstance(filepath_or_buffer, six.string_types):
             file = open(filepath_or_buffer, 'rb')

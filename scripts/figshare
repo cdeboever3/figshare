@@ -53,6 +53,10 @@ def build_parser():
     create_article.add_argument('--defined_type', default='fileset',
         choices=['fileset', 'dataset', 'media', 'figure', 'paper', 'poster'])
 
+    article_details = subparsers.add_parser('article_details',
+        help='Get the details for an article')
+    article_details.add_argument('--article_id', required=True)
+
     upload_file = subparsers.add_parser('upload_file',
         help='Upload a new file into an article')
     upload_file.add_argument('--article_id', required=True)
@@ -111,6 +115,11 @@ def upload_file(figshare, args):
 @register_action('delete_file')
 def delete_file(figshare, args):
     pprint(figshare.delete_file(args.article_id, args.file_id))
+
+
+@register_action('article_details')
+def article_details(figshare, args):
+    pprint(figshare.article_details(args.article_id))
 
 ###############################################################################
 # main entry point
